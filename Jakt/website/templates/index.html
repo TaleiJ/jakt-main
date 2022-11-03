@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <!-- first row -->
+    <div class="row">
+        <div class="col-sm-12">
+
+
+
+
+          
+            <div id="carouselExampleControls" data-bs-ride="carousel" class="carousel slide container-fluid p-3">
+                <!-- <div class="carousel-indicators">
+                  {% for event in event %}
+                  <button type="button" data-bs-target="carouselExampleControls" data-bs-slide-to="{{ loop.index }}" {% if loop.index == 1 %} class="active" {% endif %}></button>
+                  {% endfor %}
+                </div> -->
+                <div class="carousel-inner">
+                  {% for event in event %}
+                    <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
+                      <img src="{{ event.image }}" class="d-block w-100">
+                      <div class="carousel-caption d-none d-md-block">
+                        <p>{{ event.name }}</p>
+                      </div>
+                    </div>
+                  {% endfor %}
+               </div>
+                <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button> -->
+            </div>
+
+
+          </div>
+        </div> <!-- row end -->
+
+        <!-- second row -->
+        <div class="row">
+            <div class="col-12 col-sm-6" align="center">
+
+                <!-- search bar - refer to tut index.html and views.py-->
+              <form class="form-inline d-flex flex-nowrap" action="{{url_for('main.search')}}">
+                <input type="text" name="eventsearch" class="form-control flex-grow-1 my-1 mr-sm-2" id="SearchForm" placeholder="Search Events">
+                <button type="submit" class="flex-shrink-1 btn btn-change my-1">Submit</button>
+              </form>
+            </div>
+            
+            <br><br>
+            
+            <!-- off canvas - make sort buttons work - similar to search function? -->
+            <div class="col-12 col-sm-6" align="center">
+              <button class="flex-shrink-1 btn btn-change my-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Sort More</button>
+
+              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas-header inverse">
+                  <h5 class="offcanvas-title" id="offcanvasRightLabel">Sort Options</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body standard">
+                  <div class="container text-center">
+                  </div>
+                  <form>
+                    <div class="row">
+                      <div class="col">
+                        <form class="form-inline d-flex flex-nowrap" action="{{url_for('main.index')}}"></form>
+                          <button type="submit" class="flex-shrink-1 btn btn-change my-1">Reset Search</button>
+                        </form>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col">
+                        <h5>Search Genre</h5>
+                        <form class="form-inline d-flex flex-nowrap" action="{{url_for('main.genre')}}">
+                          <select name="genresearch" id="genresearch" class="form-control flex-grow-1 my-1 mr-sm-2">
+                            <option value="Pop">Pop</option>
+                            <option value="Rock">Rock</option>
+                            <option value="Jazz">Jazz</option>
+                            <option value="Country">Country</option>
+                            <option value="Electronic">Electronic</option>
+                            <option value="Metal">Metal</option>
+                          </select>
+                          <button type="submit" class="flex-shrink-1 btn btn-change my-1">Submit</button>
+                        </form>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col">
+                        <h5>Search Venue</h5>
+                        <form class="form-inline d-flex flex-nowrap" action="{{url_for('main.venue')}}">
+                          <input type="text" name="venuesearch" class="form-control flex-grow-1 my-1 mr-sm-2" id="SearchForm">
+                          <button type="submit" class="flex-shrink-1 btn btn-change my-1">Submit</button>
+                        </form>
+                      </div>
+                    </div>
+                    
+                    <br>
+                    <div class="row">
+                      <div class="col">
+                        <h5>Search Status</h5>
+                        <form class="form-inline d-flex flex-nowrap" action="{{url_for('main.status')}}">
+                          <select name="statussearch" id="statussearch" class="form-control flex-grow-1 my-1 mr-sm-2">
+                            <option value="Open">Open</option>
+                            <option value="Sold-out">Sold-Out</option>
+                            <option value="Cancelled">Cancelled</option>
+                            <option value="Unpublished">Unpublished</option>
+                          </select>
+                          <button type="submit" class="flex-shrink-1 btn btn-change my-1">Submit</button>
+                        </form>
+                      </div>
+                    </div>
+                    <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+        </div> <!-- row end --> 
+
+        <!-- third row -->
+        <div class="row">
+            <div class="col-12">
+              <h2 class="p-3"> Browse All Events: </h2>
+            </div>
+        </div><!-- row end --> 
+
+        <!-- fourth row -->
+
+        <!-- make cards dynamic - refer to tut index.html (and destinations.py?) -->
+        <div class="container">
+            <div class="row">
+              {% for event in event %}
+              {% if event.status != "Unpublished" %}
+              <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 p-3 p-3 d-flex justify-content-start">
+                <div class="inverse card mx-3" style="width: 100%;">
+                  <img src={{event.image}} class="card-img-top" alt="event picture">
+                  <div class="card-body">
+                    <p class="card-text">
+                    <h2>{{event.name}}</h2>
+                    <span class="badge standard">{{event.status}}</span>
+                    <br><br>
+                    Venue: {{event.venue}}
+                    <br>
+                    Date: {{event.date}}
+                    <br>
+                    Start Time: {{event.start_time}}
+                    <br>
+                    End Time: {{event.end_time}}
+                    <br><br>
+                    </p>
+                  </div>
+                  <div class="card-footer mx-auto justify-content-center">
+                    {% if event.user == current_user %}
+                    <a href="{{url_for('event.edit', event=event.id)}}" class="btn standard" role="button">Edit Event</a>
+                    <br><br>
+                    {% endif %}
+                    <a href="{{url_for('event.show', id=event.id)}}" class="btn standard" href="details.html" role="button">View Details</a>
+                  </div>
+                </div>
+              </div>
+              {% elif ((event.status == "Unpublished") and (event.user == current_user)) %}
+              <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 p-3 p-3 d-flex justify-content-start">
+                <div class="inverse card mx-3" style="width: 100%;">
+                  <img src={{event.image}} class="card-img-top" alt="event picture">
+                  <div class="card-body">
+                    <p class="card-text">
+                    <h2>{{event.name}}</h2>
+                    <span class="badge standard">{{event.status}}</span>
+                    <br><br>
+                    Venue: {{event.venue}}
+                    <br>
+                    Date: {{event.date}}
+                    <br>
+                    Start Time: {{event.start_time}}
+                    <br>
+                    End Time: {{event.end_time}}
+                    <br><br>
+                    </p>
+                  </div>
+                  <div class="card-footer mx-auto justify-content-center">
+                    <a href="{{url_for('event.edit', event=event.id)}}" class="btn standard" role="button">Edit Event</a>
+                    <br><br>
+                    <a href="{{url_for('event.show', id=event.id)}}" class="btn standard" role="button">View Details</a>
+                  </div>
+                </div>
+              </div>
+              {% else %}
+              {% endif %}
+              {% endfor %}
+            </div>
+        </div><!-- row end --> 
+</main>
+
+{% endblock %}
+
+
+

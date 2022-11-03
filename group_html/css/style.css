@@ -1,0 +1,76 @@
+.btn-change {
+    padding: 10px 20px;
+    line-height: 1;
+    background-color: #71806C;
+    color: #E3D8F1;
+  }
+
+  .standard {
+    background-color: #E3D8F1;
+    color: #71806C;
+  }
+
+  .inverse {
+    background-color: #71806C;
+    color: #E3D8F1;
+  }
+
+  .font {
+    font-family: Andale Mono;
+  }
+
+  .navbar-toggler-icon {
+ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.5)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+
+.navbar-nav .nav-item.active .nav-link,
+.navbar-nav .nav-item:hover .nav-link {
+    color: #000000;
+}
+
+  .section-text {
+    color: #E3D8F1;
+  }
+  .modal-text {
+    color: #71806C;
+  }
+  .opacity {
+    background-color: rgba(113, 128, 108, 0.7);
+  }
+
+  .background-img {
+    background-image: url('../img/landon.jpeg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  .accordion-button.collapsed {
+    background: #E3D8F1;
+    color: #71806C;
+  }
+
+  .accordion-collapse.collapse {
+    background: #E3D8F1;
+    color: #71806C;
+  }
+
+  .accordion-button:link, .accordion-button:visited, .accordion-button:hover, .accordion-button:focus ,.accordion-button:active  {
+    background-color: #71806C;
+    color:#E3D8F1;
+    text-decoration: none;
+    border: hidden;
+  }
+
+  .accordion-button:not(.collapsed) {
+    background-color: #E3D8F1;
+    color: #71806C;
+  }
+
+  .accordion-button:focus {
+    border-color: #71806C;
+    outline: 2;
+  }
+
+  

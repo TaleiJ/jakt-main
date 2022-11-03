@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+   
+    <!-- link to CSS file -->
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <title>Music Booking Website</title>
+
+  </head>
+  <body class = "standard font">
+<!-- need to make register, log in and log out functional  -->
+    <header>
+
+      <nav class="navbar navbar-expand-lg inverse">
+        <div class="container-fluid">
+          <h1>Jakt</h1>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+              <i class="fa fa-navicon" style="color:#fff; font-size:28px;"></i>
+            </span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active inverse" aria-current="page" href="{{ url_for('main.index') }}">Browse Events</a>
+              </li>
+              {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link inverse" href="{{ url_for('event.create') }}">Create an Event</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link inverse" href="{{ url_for('purchased.purchased') }}">Booking History</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link inverse" href="{{ url_for('auth.logout') }}">Log Out</a>
+                </li>
+              {% else %}
+                <!-- make this dynamic - refer to tut base.html -->
+                <!-- show log out to logged in users -->
+                <!-- show register and log in to other users -->
+                <!-- need authentication working first -->
+                <li class="nav-item">
+                  <a class="nav-link inverse" href="{{ url_for('auth.register') }}">Register</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link inverse" href="{{ url_for('auth.login') }}">Log in</a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    </header>
+
+    {% block content %}
+   {% endblock %}
+
+    <footer class="standard">
+      Copyright Judah, Adele, Kael, Talei
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+         crossorigin="anonymous"></script>
+  </body>
+
+</html>

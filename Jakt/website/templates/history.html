@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% import "bootstrap/form.html" as wtf %}
+
+{% block content %}
+
+<main class="standard">
+    <div class="container-fluid">
+        <h1 class = "p-3">Booking History</h1>
+        <div class="row">
+        {% for purchase in purchased %}
+        {% if purchase.user_id == current_id %}
+        <div class="col-12 col-sm-12 col-md-6 p-3 p-3 d-flex justify-content-start">
+            <!-- card 1 -->
+            <div class="card text-center">
+                <div class="card-header inverse">
+                    <!-- make content dynamic - refer to tut show.html -->
+                  <b>Booking ID: {{purchase.id}}</b>
+                </div>
+                <div class="card-body standard">
+                    <div class="container">
+                        <div class="row">
+                          <div class="col-12 col-xl-6">
+                            <img src="{{purchase.image}}" width = "100%">
+                          </div>
+                          <div class="col-12 col-xl-6">
+                            <!-- make content dynamic - refer to tut show.html -->
+                            <h5 class="card-title p-3">{{purchase.event}}</h5>
+                            <br>
+                            <p>Number of tickets: {{purchase.ticket_number}}</p>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="card-footer inverse">
+                    <!-- make content dynamic - refer to tut show.html -->
+                    <i>Booked on {{purchase.purchased_on}}</i>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+</main>
+{% endblock %}
